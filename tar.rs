@@ -9,7 +9,7 @@ fn read_tar(chan: Sender<Vec<u8>>) {
         let mut buf = vec!();
         match reader.push(BLOCK_SIZE, &mut buf) {
             Ok(_) => chan.send(buf),
-            Err(e) => return,
+            Err(_) => return,
         }
 
     }
