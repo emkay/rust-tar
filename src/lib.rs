@@ -2,35 +2,20 @@
 #![crate_type = "lib"]
 #![license = "MIT"]
 
-mod tar {
-    use std::io::{BufferedReader, File};
+use std::io::fs::File;
 
-    /*
-    pub struct FieldSize {
-        pub path: uint,
-        pub mode: uint,
-        pub uid: uint,
-        pub gid: uint,
-        pub size: uint,
-        pub mtime: uint,
-        pub cksum: uint,
-        pub typee: uint,
-        pub linkpath: uint
-    }
-    */
-
+pub fn read(f: &'static str) -> Vec<Vec<u8>> {
     static BLOCK_SIZE: uint = 512;
 
-    pub fn read_tar(chan: Sender<Vec<u8>>) {
-        let file = File::open(&Path::new("tar_test.tar"));
-        let mut reader = BufferedReader::new(file);
+    let mut split_data = vec!();
+    let mut cur_block = 0;
+    let mut handle = File::open(&Path::new(f));
+    let data = handle.read_to_end().unwrap();
 
-        loop {
-            let mut buf = vec!();
-            match reader.push(BLOCK_SIZE, &mut buf) {
-                Ok(_) => chan.send(buf),
-                Err(_) => return,
-            }
-        }
+    while cur_block < data.len() {
+        split_data.push(Vec::from_slice(data.slice(cur_block, cur_block + BLOCK_SIZE)));
+        cur_block += BLOCK_SIZE;
     }
+    
+    split_data
 }
