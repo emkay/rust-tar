@@ -4,6 +4,34 @@
 
 use std::io::fs::File;
 
+pub fn get_type(s: &'static str) -> &'static str {
+    match s {
+        "0" => "File",
+        "\0" => "OldFile",
+        "" => "OldFile",
+        "1" => "Link",
+        "2" => "SymbolicLink",
+        "3" => "CharacterDevice",
+        "4" => "BlockDevice",
+        "5" => "Directory",
+        "6" => "FIFO",
+        "7" => "ContiguousFile",
+        "g" => "GlobalExtendedHeader",
+        "x" => "ExtendedHeader",
+        "A" => "SolarisACL",
+        "D" => "GNUDumpDir",
+        "I" => "Inode",
+        "K" => "NextFileHasLongLinkpath",
+        "L" => "NextFileHasLongPath",
+        "M" => "ContinuationFile",
+        "N" => "OldGnuLongPath",
+        "S" => "SparseFile",
+        "V" => "TapeVolumeHeader",
+        "X" => "OldExtendedHeader",
+        _ => "Unknown"
+    }
+}
+
 pub fn read(f: &'static str) -> Vec<Vec<u8>> {
     static BLOCK_SIZE: uint = 512;
 
