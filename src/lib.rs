@@ -32,6 +32,26 @@ pub fn get_type(s: &'static str) -> &'static str {
     }
 }
 
+pub fn get_mode(s: &'static str) -> uint {
+   match s {
+       "suid" => 04000,
+       "sgid" => 02000,
+       "svtx" => 01000,
+       "uread" => 0400,
+       "uwrite" => 0200,
+       "uexec" => 0100,
+       "gread" => 040,
+       "gwrite" => 020,
+       "gexec" => 010,
+       "oread" => 4,
+       "owrite" => 2,
+       "oexec" => 1,
+       "all" => 07777,
+       _ => 0
+   }
+}
+
+
 pub fn read(f: &'static str) -> Vec<Vec<u8>> {
     static BLOCK_SIZE: uint = 512;
 

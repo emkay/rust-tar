@@ -11,3 +11,9 @@ fn test_get_type() {
     assert_eq!(tar::get_type("0"), "File");
     assert_eq!(tar::get_type("1"), "Link");
 }
+
+
+#[test]
+fn test_get_mode() {
+    assert_eq!(tar::get_mode("suid"), 4000);
+}
