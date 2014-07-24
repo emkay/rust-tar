@@ -1,6 +1,7 @@
 extern crate tar = "tar";
 
 fn main() {
-    let data = tar::read("/Users/matuzak/workspace/rust-tar/tests/tar_test.tar");
+    let tar = tar::new("/Users/matuzak/workspace/rust-tar/tests/tar_test.tar");
+    let data = tar.read();
     println!("{}", data.len());
 }
