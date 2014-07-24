@@ -10,6 +10,7 @@ fn test_data_len() {
 fn test_get_type() {
     assert_eq!(tar::get_type("0"), "File");
     assert_eq!(tar::get_type("1"), "Link");
+    assert_eq!(tar::get_type("5"), "Directory");
 }
 
 
