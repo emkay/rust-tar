@@ -3,13 +3,49 @@
 #![license = "MIT"]
 
 use std::io::fs::File;
+use std::collections::hashmap::HashMap;
 
 pub fn new(filepath: &'static str) -> Tar {
-    Tar { filepath: filepath }
+    let mut fields = HashMap::<&str, uint>::new();
+    fields.insert("path", 1);
+    fields.insert("mode", 2);
+    fields.insert("uid", 3);
+    fields.insert("gid", 4);
+    fields.insert("size", 5);
+    fields.insert("mtime", 6);
+    fields.insert("cksum", 7);
+    fields.insert("type", 8);
+    fields.insert("linkpath", 9);
+
+    Tar {
+        filepath: filepath,
+        fields: fields
+    }
+}
+
+struct TarHeader;
+
+impl TarHeader {
+    fn decode() {
+        fail!();
+    }
+
+    fn encode() {
+        fail!();
+    }
+
+    fn calcSum() {
+        fail!();
+    }
+
+    fn checkSum() {
+        fail!();
+    }
 }
 
 pub struct Tar {
-    filepath: &'static str
+    filepath: &'static str,
+    fields: HashMap<&'static str, uint>
 }
 
 impl Tar {
