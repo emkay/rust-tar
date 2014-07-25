@@ -5,8 +5,16 @@
 use std::io::fs::File;
 use std::collections::hashmap::HashMap;
 
+pub struct Tar {
+    filepath: &'static str,
+    fields: HashMap<&'static str, uint>,
+    field_size: HashMap<&'static str, uint>
+}
+
 pub fn new(filepath: &'static str) -> Tar {
     let mut fields = HashMap::<&str, uint>::new();
+    let mut field_size = HashMap::<&str, uint>::new();
+
     fields.insert("path", 1);
     fields.insert("mode", 2);
     fields.insert("uid", 3);
@@ -19,33 +27,9 @@ pub fn new(filepath: &'static str) -> Tar {
 
     Tar {
         filepath: filepath,
-        fields: fields
+        fields: fields,
+        field_size: field_size
     }
-}
-
-struct TarHeader;
-
-impl TarHeader {
-    fn decode() {
-        fail!();
-    }
-
-    fn encode() {
-        fail!();
-    }
-
-    fn calcSum() {
-        fail!();
-    }
-
-    fn checkSum() {
-        fail!();
-    }
-}
-
-pub struct Tar {
-    filepath: &'static str,
-    fields: HashMap<&'static str, uint>
 }
 
 impl Tar {
@@ -67,6 +51,26 @@ impl Tar {
     }
 
     pub fn extract(&self) {
+        fail!();
+    }
+}
+
+struct TarHeader;
+
+impl TarHeader {
+    fn decode() {
+        fail!();
+    }
+
+    fn encode() {
+        fail!();
+    }
+
+    fn calcSum() {
+        fail!();
+    }
+
+    fn checkSum() {
         fail!();
     }
 }
