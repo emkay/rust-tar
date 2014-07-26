@@ -8,12 +8,12 @@ use std::collections::hashmap::HashMap;
 pub struct Tar {
     filepath: &'static str,
     fields: HashMap<&'static str, uint>,
-    field_size: HashMap<&'static str, uint>
+    field_size: HashMap<uint, uint>
 }
 
 pub fn new(filepath: &'static str) -> Tar {
     let mut fields = HashMap::<&str, uint>::new();
-    let mut field_size = HashMap::<&str, uint>::new();
+    let mut field_size = HashMap::<uint, uint>::new();
 
     fields.insert("path", 1);
     fields.insert("mode", 2);
@@ -24,6 +24,25 @@ pub fn new(filepath: &'static str) -> Tar {
     fields.insert("cksum", 7);
     fields.insert("type", 8);
     fields.insert("linkpath", 9);
+
+    // path
+    field_size.insert(1, 100);
+    // mode
+    field_size.insert(2, 8);
+    // uid
+    field_size.insert(3, 8);
+    // gid
+    field_size.insert(4, 8);
+    // size
+    field_size.insert(5, 12);
+    // mtime
+    field_size.insert(6, 12);
+    // cksum
+    field_size.insert(7, 8);
+    // type
+    field_size.insert(8, 1);
+    // linkpath
+    field_size.insert(9, 100);
 
     Tar {
         filepath: filepath,
