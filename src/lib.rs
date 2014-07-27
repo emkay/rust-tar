@@ -25,24 +25,15 @@ pub fn new(filepath: &'static str) -> Tar {
     fields.insert("type", 8);
     fields.insert("linkpath", 9);
 
-    // path
     field_size.insert(*fields.get(&"path"), 100);
-    // mode
     field_size.insert(*fields.get(&"mode"), 8);
-    // uid
-    field_size.insert(3, 8);
-    // gid
-    field_size.insert(4, 8);
-    // size
-    field_size.insert(5, 12);
-    // mtime
-    field_size.insert(6, 12);
-    // cksum
-    field_size.insert(7, 8);
-    // type
-    field_size.insert(8, 1);
-    // linkpath
-    field_size.insert(9, 100);
+    field_size.insert(*fields.get(&"uid"), 8);
+    field_size.insert(*fields.get(&"gid"), 8);
+    field_size.insert(*fields.get(&"size"), 12);
+    field_size.insert(*fields.get(&"mtime"), 12);
+    field_size.insert(*fields.get(&"cksum"), 8);
+    field_size.insert(*fields.get(&"type"), 1);
+    field_size.insert(*fields.get(&"linkpath"), 100);
 
     Tar {
         filepath: filepath,
