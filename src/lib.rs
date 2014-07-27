@@ -7,8 +7,8 @@ use std::collections::hashmap::HashMap;
 
 pub struct Tar {
     filepath: &'static str,
-    fields: HashMap<&'static str, uint>,
-    field_size: HashMap<uint, uint>
+    pub fields: HashMap<&'static str, uint>,
+    pub field_size: HashMap<uint, uint>
 }
 
 pub fn new(filepath: &'static str) -> Tar {
@@ -85,11 +85,11 @@ impl TarHeader {
         fail!();
     }
 
-    fn calcSum() {
+    fn calc_sum() {
         fail!();
     }
 
-    fn checkSum() {
+    fn check_sum() {
         fail!();
     }
 }
