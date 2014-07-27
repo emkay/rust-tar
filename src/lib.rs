@@ -26,9 +26,9 @@ pub fn new(filepath: &'static str) -> Tar {
     fields.insert("linkpath", 9);
 
     // path
-    field_size.insert(1, 100);
+    field_size.insert(*fields.get(&"path"), 100);
     // mode
-    field_size.insert(2, 8);
+    field_size.insert(*fields.get(&"mode"), 8);
     // uid
     field_size.insert(3, 8);
     // gid
